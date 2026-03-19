@@ -1,0 +1,173 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check
+      - run: cargo clippy -- -D warnings
+      - run: cargo test
+
+  build:
+    name: Build ${{ matrix.target }}
+    needs: ci
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            cross: true
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            ext: .exe
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Install cross
+        if: matrix.cross
+        run: cargo install cross --git https://github.com/cross-rs/cross
+
+      - name: Build
+        shell: bash
+        run: |
+          if [ "${{ matrix.cross }}" = "true" ]; then
+            cross build --release --target ${{ matrix.target }}
+          else
+            cargo build --release --target ${{ matrix.target }}
+          fi
+
+      - name: Package binary
+        shell: bash
+        run: |
+          cp target/${{ matrix.target }}/release/parked${{ matrix.ext }} parked-${{ matrix.target }}${{ matrix.ext }}
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: parked-${{ matrix.target }}
+          path: parked-${{ matrix.target }}*
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          path: artifacts
+
+      - name: Prepare release assets
+        run: |
+          mkdir release
+          for dir in artifacts/parked-*/; do
+            cp "$dir"/* release/
+          done
+          cd release
+          sha256sum parked-* > checksums-sha256.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            release/parked-*
+            release/checksums-sha256.txt
+
+  update-tap:
+    name: Update Homebrew Tap
+    needs: release
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - name: Compute SHA256s from release assets
+        id: shas
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${TAG#v}"
+          for target in aarch64-apple-darwin aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu; do
+            URL="https://github.com/bradleydwyer/parked/releases/download/${TAG}/parked-${target}"
+            curl -fsSL -o "parked-${target}" "$URL"
+            SHA=$(sha256sum "parked-${target}" | awk '{print $1}')
+            KEY=$(echo "$target" | tr '-' '_')
+            echo "${KEY}=${SHA}" >> "$GITHUB_OUTPUT"
+          done
+
+      - name: Check out tap repository
+        uses: actions/checkout@v5
+        with:
+          repository: bradleydwyer/homebrew-tap
+          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+          path: homebrew-tap
+
+      - name: Update formula
+        run: |
+          VERSION="${TAG#v}"
+          cat > homebrew-tap/Formula/parked.rb <<EOF
+          class Parked < Formula
+            desc "Tiered domain availability checker (DNS, WHOIS, RDAP) with CLI and MCP server"
+            homepage "https://github.com/bradleydwyer/parked"
+            version "${VERSION}"
+            license "MIT"
+
+            on_macos do
+              url "https://github.com/bradleydwyer/parked/releases/download/${TAG}/parked-aarch64-apple-darwin"
+              sha256 "${{ steps.shas.outputs.aarch64_apple_darwin }}"
+            end
+
+            on_linux do
+              if Hardware::CPU.arm?
+                url "https://github.com/bradleydwyer/parked/releases/download/${TAG}/parked-aarch64-unknown-linux-gnu"
+                sha256 "${{ steps.shas.outputs.aarch64_unknown_linux_gnu }}"
+              else
+                url "https://github.com/bradleydwyer/parked/releases/download/${TAG}/parked-x86_64-unknown-linux-gnu"
+                sha256 "${{ steps.shas.outputs.x86_64_unknown_linux_gnu }}"
+              end
+            end
+
+            def install
+              bin.install Dir["parked*"].first => "parked"
+            end
+
+            test do
+              assert_match "parked", shell_output("\#{bin}/parked --version")
+            end
+          end
+          EOF
+
+      - name: Commit and push formula update
+        run: |
+          cd homebrew-tap
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/parked.rb
+          git commit -m "Update parked to ${TAG}"
+          git push

@@ -1,0 +1,19 @@
+[workspace]
+members = ["crates/caucus-core", "crates/caucus-cli", "crates/caucus-python"]
+resolver = "2"
+
+[workspace.package]
+version = "1.0.7"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/bradleydwyer/caucus"
+
+[workspace.dependencies]
+caucus-core = { path = "crates/caucus-core" }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+async-trait = "0.1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "published",
+  "source": "bradleydwyer/published",
+  "description": "Check if an app name is available on the Apple App Store and Google Play. Use when a user wants to check app name availability, find out if an app name is taken, research names for a new mobile app, or compare candidate app names across stores.",
+  "ts": "2026-03-27T00:02:11Z"
+}

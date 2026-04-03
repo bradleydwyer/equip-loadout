@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "go",
+  "source": "grafana/loki/.cursor/skills/go",
+  "description": "Best practices for working with Go codebases. Use when writing, debugging, or exploring Go code, including reading dependency sources and documentation.",
+  "ts": "2026-04-03T22:53:45Z"
+}

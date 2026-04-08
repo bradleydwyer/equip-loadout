@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "brad-voice",
+  "source": "/Users/brad/dev/skills/brad-voice",
+  "description": "Write prose and text as Brad Dwyer — in his Australian, warm-but-direct, dry-humour voice — while avoiding AI writing tells. Use this skill whenever Brad asks you to draft, write, reply to, or ghost-write any human-facing text that will go out under his name — Slack messages, DMs, emails, announcements, performance reviews, feedback, memos, 1:1 notes, status updates, or any prose he'll share with another human. Also trigger on phrases like \"write as me\", \"in my voice\", \"draft a reply\", \"say this in Slack\", \"write an email to\", \"write a review for\", \"help me respond to\", or any request for first-person writing from Brad. Err on the side of triggering whenever Brad is the author — voice-matching matters any time his name will be on the text. Do NOT trigger for code, commit messages, PR descriptions, or internal technical docs where voice is irrelevant.",
+  "ts": "2026-04-08T11:33:55Z"
+}

@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "web-design-guidelines",
+  "source": "vercel-labs/agent-skills/skills/web-design-guidelines",
+  "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\".",
+  "ts": "2026-03-25T01:27:41Z"
+}

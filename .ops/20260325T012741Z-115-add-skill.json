@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "skill",
+  "source": "bradleydwyer/equip/skill",
+  "description": "Manage SKILL.md files across AI coding agents using the equip CLI. Use this skill whenever the user wants to install, uninstall, list, update, edit, check for outdated skills, survey, fix, sync, export, restore, configure, or check status of skills from GitHub repos, git URLs, or local paths. Also trigger when the user asks about managing skills across multiple agents or machines, wants to see what skills are installed, needs to find skill sprawl or duplicates, wants to check if skills are up to date, needs to sync skills to a new machine, or wants to edit or update the contents of a skill's SKILL.md file. If the user mentions \"equip\" by name, this skill definitely applies.",
+  "ts": "2026-03-25T01:27:41Z"
+}

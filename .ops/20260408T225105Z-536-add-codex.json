@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "codex",
+  "source": "/Users/brad/dev/skills/codex",
+  "description": "Run OpenAI's Codex CLI as a secondary AI agent from within Claude Code to verify thinking, double-check implementations, hunt for bugs, review diffs, or get a second opinion from a different model. Use this skill whenever the user wants to \"ask Codex\", \"verify with Codex\", \"have Codex check\", \"get a second opinion\", \"sanity-check this\", \"review with Codex\", \"find bugs with Codex\", or any reference to the Codex CLI. Also trigger when the user wants an independent review of recently written code or reasoning.",
+  "ts": "2026-04-08T22:51:05Z"
+}

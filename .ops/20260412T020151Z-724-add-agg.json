@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "agg",
+  "source": "bradleydwyer/skills",
+  "description": "Convert asciicast terminal recordings (.cast) to animated GIF using agg (asciinema gif generator). Use this skill whenever the user wants to convert a .cast file to GIF, create animated terminal GIFs for documentation or READMEs, or needs a GIF from a terminal recording. Trigger when the user mentions agg, asciicast to GIF, terminal GIF, cast to GIF, or wants to generate a GIF from an asciinema recording. Also trigger when the user wants to customize terminal GIF appearance (themes, fonts, speed).",
+  "ts": "2026-04-12T02:01:51Z"
+}

@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "available",
+  "source": "bradleydwyer/available",
+  "description": "Find and check project name availability across domains and package registries using the `available` CLI tool. Use this skill whenever the user wants to brainstorm or generate project names, check if a specific name is available (domains, npm, crates.io, PyPI, etc.), find a name for a new tool/library/app, or assess domain and package registry availability for any name. Also trigger when the user says things like \"what should I call this\", \"is this name taken\", \"find me a name for\", \"check if X is available\", or is starting a new project and needs naming help.",
+  "ts": "2026-04-12T02:00:48Z"
+}

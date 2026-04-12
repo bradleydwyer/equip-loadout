@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "termsvg",
+  "source": "bradleydwyer/skills",
+  "description": "Record, replay, and export terminal sessions as animated SVG images using termsvg. Use this skill whenever the user wants to record a terminal session, replay an asciicast recording, or export a .cast file to an animated SVG. Trigger when the user mentions termsvg, terminal recording to SVG, animated terminal SVG, asciicast export, or wants to create animated terminal demos for documentation, READMEs, or presentations. Also trigger when the user has .cast files (asciinema format) they want to convert to SVG.",
+  "ts": "2026-04-12T02:01:10Z"
+}

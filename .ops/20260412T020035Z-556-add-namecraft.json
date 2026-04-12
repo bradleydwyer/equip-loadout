@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "namecraft",
+  "source": "bradleydwyer/skills",
+  "description": "Guide structured product and project naming ideation. Use when the user wants to brainstorm names, evaluate candidate names, analyze the phonetics or feel of names, or discuss naming strategy for apps, services, libraries, agents, chatbots, CLIs, or any digital product. Also trigger when the user mentions naming conventions, name scoring, SMILE/SCRATCH evaluation, or asks to compare or rank candidate names. Even if the user just says \"I need a name for...\" or \"what should I call this?\", this skill applies. Does NOT handle domain availability checking — the user has a separate tool for that.",
+  "ts": "2026-04-12T02:00:35Z"
+}

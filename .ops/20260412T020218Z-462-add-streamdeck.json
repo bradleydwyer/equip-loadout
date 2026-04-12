@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "streamdeck",
+  "source": "/Users/brad/dev/streamdeck",
+  "description": "Control Elgato Stream Deck devices (set button images, colors, brightness, handle presses, LCD touchbar, dials) via the `streamdeck` Rust CLI and bridge architecture. The CLI talks to a daemon that owns the USB HID hardware directly — no Elgato app needed. Use this skill whenever the user wants to set a Stream Deck button, display status on a Stream Deck, configure Stream Deck keys, change brightness, react to button presses, render widgets (gauges, sparklines, status buttons), show dynamic indicators (CI status, energy data, etc.) on physical buttons or the LCD touchbar, or work with Stream Deck bridges. Also trigger when the user mentions Stream Deck in the context of developer tooling, notifications, dashboards, or hardware buttons.",
+  "ts": "2026-04-12T02:02:18Z"
+}

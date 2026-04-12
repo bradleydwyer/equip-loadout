@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "caucus",
+  "source": "bradleydwyer/caucus",
+  "description": "Multi-LLM consensus engine. Queries multiple AI models and synthesizes a single answer using strategies like voting, judge synthesis, and multi-round debate. Use when the user wants to query multiple LLMs, compare model outputs, get a consensus answer, or needs a synthesized response from several AI models.",
+  "ts": "2026-04-12T02:00:18Z"
+}

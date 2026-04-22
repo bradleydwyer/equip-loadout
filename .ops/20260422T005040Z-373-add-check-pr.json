@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "check-pr",
+  "source": "/Users/brad/dev/pocket/skills/check-pr",
+  "description": "Pre-PR quality gate for the Pocket monorepos (pocket, pocket-admin). Runs before marking a PR ready for review — executes the real repo toolchain (just lint/test/sqlc/ids/check-migrations, biome check, vite build + tsc), applies encoded Pocket team conventions from review history, runs semantic review subagents, checks non-code artifacts (branch name, commit messages, PR description, Linear ticket, staged secrets). Use this skill whenever the user says \"check pr\", \"check the pr\", \"ready for review\", \"pre-PR check\", \"preflight\", \"check my worktree\", \"final review before PR\", \"about to mark this ready\", \"is this good to ship\", or when they finish feature work in a pocket repo and mention opening or updating a PR. Surfaces findings grouped by severity and waits for explicit approval before applying any fixes. Never commits, never pushes.",
+  "ts": "2026-04-22T00:50:40Z"
+}

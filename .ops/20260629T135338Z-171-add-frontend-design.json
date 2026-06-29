@@ -1,0 +1,7 @@
+{
+  "op": "add",
+  "skill": "frontend-design",
+  "source": "anthropics/skills/skills/frontend-design",
+  "description": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.",
+  "ts": "2026-06-29T13:53:38Z"
+}
